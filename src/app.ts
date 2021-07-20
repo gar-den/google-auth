@@ -1,7 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import session from 'express-session';
 import passport from "passport";
-import { passportApp } from "./routers/google";
+import { passportRouter } from "./routers/google";
 import { passportConfig } from "./routers/passport";
 import { router } from "./routers/router";
 
@@ -18,7 +18,7 @@ app.use(passport.session())
 
 passportConfig();
 
-app.use("/auth/google", [passportApp]);
+app.use("/auth/google", [passportRouter]);
 app.use("/", [router]);
 
 app.listen(5000, () => {
