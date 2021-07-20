@@ -3,18 +3,18 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import passport from "passport";
 
-const passportApp = express();
+const passportRouter = express();
 
-passportApp.get("/", 
+passportRouter.get("/", 
     passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
 // google login 성공과 실패 리다이렉트
-passportApp.get("/callback",
+passportRouter.get("/callback",
     passport.authenticate("google", {
         successRedirect: "/",
         failureRedirect: "/login",
     })
 )
 
-export { passportApp };
+export { passportRouter };
