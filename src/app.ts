@@ -8,7 +8,7 @@ import { router } from "./routers/router";
 import { connect } from "./schemas";
 connect();
 
-const app = express(); // variable automatically inferred as Application
+const app = express();
 
 app.use(session({secret: "secret key", resave: false, saveUninitialized: false}));
 

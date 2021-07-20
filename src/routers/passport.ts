@@ -6,12 +6,16 @@ import GoogleStrategy, { Strategy } from "passport-google-oauth2";
 const app = express();
 
 const passportConfig = () => {
+    // 로그인 최초 성공시 호출되는 함수
+    // done(null, user)로 세션 초기화
     passportRouter.serializeUser((user, done) => {
         done(null, user);
     })
     
-    passportRouter.deserializeUser((id: any, done) => {
-        done(null, id);
+    // 사용자가 페이지를 방문할 때마다 호출되는 함수
+    // done(null, user)로 사용자의 정보를 각 req.user에 넣어준다.
+    passportRouter.deserializeUser((user: any, done) => {
+        done(null, user);
     })
     
     passportRouter.use(new Strategy({
